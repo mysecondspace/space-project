@@ -1,0 +1,17 @@
+.footer {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  margin-top: calc(100vh - 300px - 141px - 6em);
+
+  @include media(biggest) {
+    margin-top: calc(100vh - 300px - 94px - 6em);
+  }
+
+  img {
+    animation: 120s rotate360 infinite linear, 2s jump-earth infinite linear;
+    position: absolute;
+    width: 100%;
+    top: 0;
+  }
+}

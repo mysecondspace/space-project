@@ -1,0 +1,670 @@
+.article {
+  padding-top: 122px;
+
+  > div:not(.container) {
+    height: calc(100vh - 122px);
+
+    ul {
+      animation: fade-in-left $time * 5 forwards;
+      top: calc(50% - 139px);
+      position: fixed;
+      display: grid;
+      z-index: 1;
+      left: 2%;
+
+      @include media(phone) {
+        display: none;
+      }
+
+      a {
+        min-height: 30px;
+        position: relative;
+
+        @mixin child($n) {
+          &:nth-of-type(#{$n}) {
+            &::before {
+              transform: rotate(#{45 * $n}deg);
+              animation: jump-meteorite (#{.9 * $n}s) infinite linear;
+            }
+          }
+        }
+
+        @for $i from 1 through 5 {
+          @include child($i);
+        }
+
+        &:not(:last-of-type) {
+          margin-bottom: 2em;
+        }
+
+        &::before {
+          content: '';
+          opacity: .5;
+          position: absolute;
+          transition: $time * 3;
+          background: url('../../images/meteorite.png') no-repeat left top;
+          background-size: cover;
+          height: 25px;
+          width: 25px;
+          left: 0;
+          top: 0;
+        }
+
+        &:hover {
+          &::before {
+            opacity: 1;
+            transform: scale(1.2);
+            animation-name: none;
+          }
+
+          span {
+            transition: opacity $time * 5;
+            position: relative;
+            display: block;
+            opacity: 1;
+          }
+        }
+
+        span {
+          top: 0;
+          opacity: 0;
+          color: $yellow;
+          position: absolute;
+          padding-bottom: 40px;
+          letter-spacing: $spacing;
+          writing-mode: vertical-lr;
+          transform: rotate(180deg);
+          white-space: nowrap;
+          text-align: right;
+          transition: 0;
+        }
+      }
+
+      &.hide {
+        opacity: 0;
+        animation: fade-in-left-reverse $time * 5 forwards;
+      }
+    }
+  }
+
+  canvas {
+    position: fixed;
+    display: block;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  section {
+    margin: 2em 0;
+    display: flex;
+    position: relative;
+
+    div {
+      > span {
+        float: left;
+        margin: 1em 0;
+        display: block;
+        letter-spacing: $spacing * 2;
+        font-family: $bold;
+        font-size: em(40);
+        color: $white;
+
+        @include media(phone) {
+          font-size: em(24);
+        }
+
+        span {
+          color: $yellow;
+        }
+      }
+
+      p {
+        float: left;
+        color: $white;
+        display: block;
+        letter-spacing: $spacing;
+        font-family: $light;
+        line-height: 1.4;
+
+        span {
+          color: $yellow;
+          font-family: $regular;
+
+          &.bold {
+            font-family: $bold;
+            font-size: em(18);
+          }
+
+          &.button {
+            cursor: pointer;
+          }
+
+          &.underline {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      ul {
+        float: left;
+        margin: 2em 0;
+
+        @include media(phone) {
+          margin: 2em 0;
+        }
+
+        li {
+          list-style-type: none;
+          letter-spacing: $spacing;
+          font-family: $light;
+          position: relative;
+          padding-left: 45px;
+          line-height: 1.4;
+          min-height: 30px;
+          color: $white;
+
+          &::before {
+            content: '';
+            position: absolute;
+            animation: jump-earth 1s infinite linear;
+            background: url('../../images/planet.png') no-repeat left top;
+            background-size: cover;
+            height: 30px;
+            width: 30px;
+            left: 0;
+            top: 0;
+          }
+
+          &:not(:last-of-type) {
+            margin-bottom: 3em;
+          }
+
+          span {
+            color: $yellow;
+            font-family: $regular;
+          }
+        }
+
+        p {
+          float: initial;
+          padding-bottom: 1em;
+        }
+
+        &.list li {
+          margin-bottom: 1em;
+        }
+
+        &.menu {
+          animation: fade-in-right-reverse $time * 5 forwards;
+          display: inline-flex;
+          position: absolute;
+          margin: 0;
+          bottom: 0;
+          right: 0;
+
+          li {
+            &::before {
+              content: none;
+            }
+
+            a {
+              @include transition($time);
+              text-transform: uppercase;
+              font-family: $bold;
+              color: $white;
+
+              &:hover {
+                color: $yellow;
+              }
+            }
+          }
+
+          &.visible {
+            opacity: 0;
+            animation: fade-in-right $time * 5 forwards;
+          }
+        }
+      }
+    }
+
+    &.layer {
+      margin: 0;
+      z-index: 1;
+      position: relative;
+      padding-bottom: 2em;
+      background-color: $primary;
+    }
+  }
+
+  .black-hole {
+    position: relative;
+    margin: 0 auto;
+    bottom: 0;
+
+    &__top {
+      background-image: url('../../images/black-hole-1.png');
+      background-size: cover;
+      margin-top: 10em;
+      height: 45px;
+      width: 150px;
+    }
+
+    &__bottom {
+      background-image: url('../../images/black-hole-2.png');
+      background-size: cover;
+      margin-top: -8px;
+      width: 150px;
+      height: 38px;
+      z-index: 1;
+    }
+
+    &--rotate {
+      transform: rotate(180deg);
+      margin-bottom: -8px;
+      margin-top: 0;
+
+      &.black-hole__top {
+        margin-bottom: 10em;
+      }
+    }
+  }
+
+  &__glitch {
+    position: absolute;
+
+    &.moon {
+      animation: jump-moon 2s infinite linear;
+      height: 600px;
+      width: 600px;
+      bottom: -9%;
+      right: -9%;
+      z-index: 3;
+
+      @include media(phone) {
+        height: 200px;
+        width: 200px;
+      }
+
+      &--small {
+        height: 225px;
+        width: 225px;
+        right: -40%;
+        bottom: -9%;
+      }
+    }
+
+    &.mars {
+      animation: jump-mars 1.9s infinite linear;
+      height: 200px;
+      width: 200px;
+      left: 5%;
+      top: 15%;
+    }
+
+    &.small-moon {
+      animation: jump-small-moon 2.15s infinite linear;
+      height: 200px;
+      width: 200px;
+      left: 40%;
+      top: 80%;
+    }
+
+    &.asteroid {
+
+      &--first {
+        animation: jump-asteroid-first 1.25s infinite linear;
+        bottom: -15em;
+        height: 150px;
+        width: 150px;
+        left: 3em;
+
+        @include media(phone) {
+          left: 18em;
+        }
+      }
+
+      &--second {
+        animation: jump-asteroid-second 1.5s infinite linear;
+        height: 200px;
+        width: 200px;
+        right: 12%;
+        top: 20%;
+      }
+    }
+  }
+
+  &__heading {
+    @include inline-block;
+    letter-spacing: $spacing * 2;
+    text-transform: uppercase;
+    position: relative;
+    margin-top: 20vh;
+    width: 50vw;
+
+    @include media(phone) {
+      margin-top: 5vh;
+      width: 100%;
+    }
+
+    > span {
+      animation: fade-in-left $time * 5 $time * 5 forwards;
+      line-height: 1.4;
+      display: flex;
+      float: left;
+      clear: both;
+      opacity: 0;
+
+      &:first-of-type {
+        font-family: $bold;
+        font-size: em(40);
+        color: $yellow;
+
+        @include media(phone) {
+          font-size: em(24);
+        }
+      }
+
+      &:last-of-type {
+        font-size: em(20);
+        margin-top: 2vh;
+        color: $white;
+
+        @include media(phone) {
+          font-size: em(18);
+        }
+      }
+    }
+  }
+
+  &__hint {
+    position: absolute;
+    cursor: pointer;
+
+    &::after {
+      @include border-radius(50%);
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 50px 30px $hint-shadow-3;
+      background: $hint-background;
+      transition: opacity .5s ease;
+      position: absolute;
+      content: '';
+      top: 50%;
+      left: 50%;
+      width: 1px;
+      height: 1px;
+      z-index: 0;
+    }
+
+    &.satellite {
+      @include transition($time * 20);
+      bottom: calc(3% + 37.5px);
+      right: 60px;
+      z-index: 2;
+
+      &::after {
+        animation: glow-red 2s cubic-bezier(.25, .1, .2, 1) infinite;
+      }
+
+      .article__hint--content {
+        margin-right: -40px;
+        bottom: 45px;
+        width: 121px;
+
+        &::after,
+        &::before {
+          content: none;
+        }
+
+        p {
+          color: $yellow;
+          font-size: em(12);
+          font-family: $bold;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    &.rocket {
+      animation: fade-in-up $time * 5 $time * 5 forwards;
+      opacity: 0;
+      z-index: 1;
+      bottom: 3%;
+      right: 0;
+      left: 0;
+
+      @include media(phone) {
+        z-index: 0;
+      }
+
+      &::after {
+        animation: glow-green 2s cubic-bezier(.25, .1, .2, 1) infinite;
+      }
+
+      &.none {
+        &::after,
+        &:hover .article__hint--content,
+        &:hover .article__hint--radius,
+        .article__hint--dot {
+          opacity: 0;
+        }
+      }
+
+      .article__hint--content {
+        width: 240px;
+
+        @include media(phone) {
+          bottom: 70px;
+          right: 25%;
+
+          &::after,
+          &::before {
+            display: none;
+          }
+        }
+
+        &::before {
+          width: 200px;
+        }
+      }
+    }
+
+    &.meteor {
+      @include transition($time * 10);
+
+      &::after {
+        animation: glow-red 2s cubic-bezier(.25, .1, .2, 1) infinite;
+      }
+
+      .article__hint--content {
+        margin-right: -40px;
+        bottom: 45px;
+        width: 121px;
+
+        &::after,
+        &::before {
+          content: none;
+        }
+
+        p {
+          color: $glow-red;
+          font-size: em(12);
+          font-family: $bold;
+          text-transform: uppercase;
+        }
+      }
+
+      &--1 {
+        bottom: -15vh;
+        left: 10vw;
+      }
+
+      &--2 {
+        bottom: -20vh;
+        right: 10vw;
+      }
+    }
+
+    &.satellite,
+    &.rocket,
+    &.meteor {
+      &:hover {
+        .article__hint--radius {
+          visibility: visible;
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        .article__hint--content {
+          opacity: 1;
+          z-index: 5;
+          color: $white;
+          padding: 12px 0;
+          position: absolute;
+          transition: opacity .7s ease, visibility .7s ease;
+          pointer-events: none;
+          visibility: visible;
+
+          &::before {
+            transition: width .4s;
+          }
+
+          &::after {
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
+
+    &--scroll {
+      position: absolute;
+      cursor: pointer;
+      margin: 0 auto;
+      z-index: 1;
+      bottom: 0;
+      right: 0;
+      left: 0;
+
+      &.satellite {
+        animation: jump 1.25s infinite linear;
+        margin-bottom: -37.5px;
+        margin-left: -37.5px;
+        width: 75px;
+
+        img {
+          transition: $time * 20 ease-in-out;
+          transform: rotate(90deg);
+          width: 100%;
+        }
+      }
+
+      &.rocket {
+        @include transition($time * 15);
+        animation: jump 1s infinite linear;
+        width: 50px;
+
+        object {
+          pointer-events: none;
+          transition: $time * 5 ease-in-out;
+          transform: rotate(135deg);
+          width: 100%;
+        }
+      }
+
+      &.meteor {
+        animation: jump 1.25s infinite linear;
+        margin-bottom: -37.5px;
+        margin-left: -37.5px;
+        width: 75px;
+
+        img {
+          transition: $time * 20 ease-in-out;
+          width: 100%;
+        }
+
+        &--1 img {
+          transform: rotate(90deg);
+        }
+
+        &--2 img {
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &--radius {
+      @include border-radius(50%);
+      background-color: $hint-radius;
+      margin: -125px 0 0 -125px;
+      position: absolute;
+      height: 250px;
+      width: 250px;
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0);
+      transition-property: background-color, opacity, visibility, transform;
+      transition-timing-function: ease, ease, ease, cubic-bezier(.5, 0, 0, 1);
+      transition-duration: .5s;
+    }
+
+    &--dot {
+      @include border-radius(50%);
+      border: 1px solid $white;
+      margin: auto;
+      z-index: 3;
+      width: 60px;
+      height: 60px;
+      display: block;
+      transform: translate(-0%, -0%) scale(.95);
+      animation: border 2s linear infinite;
+    }
+
+    &--content {
+      z-index: 5;
+      opacity: 0;
+      padding: 12px 0;
+      position: absolute;
+      transition: opacity .7s ease, visibility .7s ease;
+      pointer-events: none;
+      margin-right: 56px;
+      visibility: hidden;
+      color: $white;
+      bottom: 85px;
+      right: 50%;
+
+      &::before {
+        content: '';
+        bottom: 2.5px;
+        background-color: $white;
+        transition: width .4s;
+        position: absolute;
+        height: 1px;
+        right: 1px;
+        width: 0;
+      }
+
+      &::after {
+        opacity: 1;
+        height: 1px;
+        width: 51px;
+        right: -50px;
+        bottom: 2.5px;
+        position: absolute;
+        transform: rotate(45deg);
+        background-color: $white;
+        transition: opacity .5s ease;
+        transform-origin: 0 50%;
+        transition-delay: 0s;
+        content: '';
+      }
+
+      p {
+        text-align: right;
+      }
+    }
+  }
+}
