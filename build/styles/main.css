@@ -284,7 +284,7 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 .article section div p { float: left; color: #fff; display: block; letter-spacing: 0.5px; font-family: "rubik light"; line-height: 1.4; }
 .article section div p span { color: #ffdd9d; font-family: "rubik regular"; }
 .article section div p span.bold { font-family: "rubik bold"; font-size: 1.125em; }
-.article section div p span.button { cursor: pointer; }
+.article section div p span.button { cursor: pointer; font-size: 1.5em; }
 .article section div p span.underline { text-decoration: underline; }
 .article section div ul { float: left; margin: 2em 0; }
 @media only screen and (max-width: 767px) { .article section div ul { margin: 2em 0; } }
