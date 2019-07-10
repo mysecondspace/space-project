@@ -59,6 +59,14 @@
   50% { bottom: -.2em; }
   70% { bottom: -.3em; }
   100% { bottom: 0; } }
+@keyframes rocket-fire-down { 0% { bottom: -.3em; }
+  50% { bottom: -.4em; }
+  70% { bottom: -.5em; }
+  100% { bottom: -.3em; } }
+@keyframes rocket-fire-up { 0% { bottom: 0; }
+  50% { bottom: .2em; }
+  70% { bottom: .3em; }
+  100% { bottom: 0; } }
 @keyframes jump-moon { 0% { bottom: -9%; }
   50% { bottom: -8.7%; }
   70% { bottom: -8.5%; }
@@ -75,6 +83,10 @@
   50% { top: 75.7%; }
   70% { top: 75.5%; }
   100% { top: 75%; } }
+@keyframes jump-jupiter { 0% { top: 65%; }
+  50% { top: 65.7%; }
+  70% { top: 65.5%; }
+  100% { top: 65%; } }
 @keyframes jump-small-moon { 0% { top: 80%; }
   50% { top: 80.7%; }
   70% { top: 80.5%; }
@@ -87,10 +99,10 @@
   50% { top: .3em; }
   70% { top: .2em; }
   100% { top: 0; } }
-@keyframes jump-asteroid-first { 0% { bottom: -15em; }
-  50% { bottom: -14.7em; }
-  70% { bottom: -14.5em; }
-  100% { bottom: -15em; } }
+@keyframes jump-asteroid-first { 0% { bottom: -10em; }
+  50% { bottom: -9.7em; }
+  70% { bottom: -9.5em; }
+  100% { bottom: -10em; } }
 @keyframes jump-asteroid-second { 0% { top: 20%; }
   50% { top: 20.2%; }
   70% { top: 20.3%; }
@@ -243,9 +255,12 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 .element { position: absolute; }
 .element__saturn { animation: jump-saturn 1.8s infinite linear; width: 150px; left: 60%; top: 50%; }
 .element__uranus { animation: jump-uranus 2.2s infinite linear; width: 175px; left: 40%; top: 75%; }
-@media only screen and (max-width: 767px) { .element__uranus { left: 20%; } }
+@media only screen and (max-width: 767px) { .element__uranus { left: -125%; } }
+.element__jupiter { animation: jump-jupiter 2.1s infinite linear; width: 150px; left: 30%; top: 65%; }
+@media only screen and (max-width: 767px) { .element__jupiter { left: -125%; } }
 
 .paused { animation-play-state: paused !important; }
+.paused:nth-of-type(2) { display: none; }
 
 .article__glitch { --gap-horizontal: 10px; --glitch-height: 100vh; --glitch-width: 100vw; --gap-vertical: 5px; --delay-anim: 3.5s; --time-anim: 4s; --blend-mode-1: none; --blend-mode-2: none; --blend-mode-3: none; --blend-mode-4: none; --blend-color-1: transparent; --blend-color-2: transparent; --blend-color-3: transparent; --blend-color-4: transparent; }
 .article__glitch--text { animation-name: glitch-animation-text; animation-timing-function: linear; animation-iteration-count: infinite; animation-duration: var(--time-anim); animation-delay: calc(var(--delay-anim) + var(--time-anim) * 0.2); }
@@ -262,22 +277,21 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 
 .article { padding-top: 122px; }
 .article > div:not(.container) { height: calc(100vh - 122px); }
-.article > div:not(.container) ul { animation: fade-in-left 1s forwards; top: calc(50% - 139px); position: fixed; display: -ms-grid; display: grid; z-index: 1; left: 2%; }
+.article > div:not(.container) ul { animation: fade-in-left 1s forwards; top: calc(50% - 139px); position: fixed; display: -ms-grid; display: grid; z-index: 2; left: 2%; }
 @media only screen and (max-width: 767px) { .article > div:not(.container) ul { display: none; } }
 .article > div:not(.container) ul a { min-height: 30px; position: relative; }
-.article > div:not(.container) ul a:nth-of-type(1)::before { transform: rotate(45deg); animation: jump-meteorite 0.9s infinite linear; }
-.article > div:not(.container) ul a:nth-of-type(2)::before { transform: rotate(90deg); animation: jump-meteorite 1.8s infinite linear; }
-.article > div:not(.container) ul a:nth-of-type(3)::before { transform: rotate(135deg); animation: jump-meteorite 2.7s infinite linear; }
-.article > div:not(.container) ul a:nth-of-type(4)::before { transform: rotate(180deg); animation: jump-meteorite 3.6s infinite linear; }
-.article > div:not(.container) ul a:nth-of-type(5)::before { transform: rotate(225deg); animation: jump-meteorite 4.5s infinite linear; }
+.article > div:not(.container) ul a:nth-of-type(1) img { transform: rotate(45deg); animation: jump-meteorite 0.9s infinite linear; }
+.article > div:not(.container) ul a:nth-of-type(2) img { transform: rotate(90deg); animation: jump-meteorite 1.8s infinite linear; }
+.article > div:not(.container) ul a:nth-of-type(3) img { transform: rotate(135deg); animation: jump-meteorite 2.7s infinite linear; }
+.article > div:not(.container) ul a:nth-of-type(4) img { transform: rotate(180deg); animation: jump-meteorite 3.6s infinite linear; }
+.article > div:not(.container) ul a:nth-of-type(5) img { transform: rotate(225deg); animation: jump-meteorite 4.5s infinite linear; }
 .article > div:not(.container) ul a:not(:last-of-type) { margin-bottom: 2em; }
-.article > div:not(.container) ul a::before { content: ''; opacity: .5; position: absolute; transition: 0.6s; background: url("../images/meteorite.png") no-repeat left top; background-size: cover; height: 25px; width: 25px; left: 0; top: 0; }
-.article > div:not(.container) ul a:hover::before { opacity: 1; transform: scale(1.2); animation-name: none; }
-.article > div:not(.container) ul a:hover span { transition: opacity 1s; position: relative; display: block; opacity: 1; }
-.article > div:not(.container) ul a span { top: 0; opacity: 0; color: #ffdd9d; position: absolute; padding-bottom: 40px; letter-spacing: 0.5px; -ms-writing-mode: tb-lr; writing-mode: vertical-lr; transform: rotate(180deg); white-space: nowrap; text-align: right; transition: 0; }
+.article > div:not(.container) ul a:hover img { opacity: 1; animation-name: none; transform: scale(1.5); }
+.article > div:not(.container) ul a img { opacity: .5; position: absolute; transition: 0.6s; height: 25px; width: 25px; left: 0; top: 0; }
 .article > div:not(.container) ul.hide { opacity: 0; animation: fade-in-left-reverse 1s forwards; }
 .article canvas { position: fixed; display: block; height: 100%; width: 100%; left: 0; top: 0; }
 .article section { margin: 2em 0; display: -ms-flexbox; display: flex; position: relative; }
+@media only screen and (max-width: 767px) { .article section { z-index: 1; } }
 .article section div > span { float: left; margin: 1em 0; display: block; letter-spacing: 1px; font-family: "rubik bold"; font-size: 2.5em; color: #fff; }
 @media only screen and (max-width: 767px) { .article section div > span { font-size: 1.5em; } }
 .article section div > span span { color: #ffdd9d; }
@@ -287,7 +301,7 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 .article section div p span.button { cursor: pointer; font-size: 1.5em; }
 .article section div p span.underline { text-decoration: underline; }
 .article section div ul { float: left; margin: 2em 0; }
-@media only screen and (max-width: 767px) { .article section div ul { margin: 2em 0; } }
+@media only screen and (max-width: 767px) { .article section div ul { margin: 1em 0; } }
 .article section div ul li { list-style-type: none; letter-spacing: 0.5px; font-family: "rubik light"; position: relative; padding-left: 45px; line-height: 1.4; min-height: 30px; color: #fff; }
 .article section div ul li::before { content: ''; position: absolute; animation: jump-earth 1s infinite linear; background: url("../images/planet.png") no-repeat left top; background-size: cover; height: 30px; width: 30px; left: 0; top: 0; }
 .article section div ul li:not(:last-of-type) { margin-bottom: 3em; }
@@ -295,8 +309,11 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 .article section div ul p { float: initial; padding-bottom: 1em; }
 .article section div ul.list li { margin-bottom: 1em; }
 .article section div ul.menu { animation: fade-in-right-reverse 1s forwards; display: -ms-inline-flexbox; display: inline-flex; position: absolute; margin: 0; bottom: 0; right: 0; }
+@media only screen and (max-width: 767px) { .article section div ul.menu { bottom: -17vh; } }
+@media only screen and (max-width: 767px) { .article section div ul.menu li { padding-left: 17.5px; } }
 .article section div ul.menu li::before { content: none; }
 .article section div ul.menu li a { transition: 0.2s; text-transform: uppercase; font-family: "rubik bold"; color: #fff; }
+@media only screen and (max-width: 767px) { .article section div ul.menu li a { white-space: nowrap; } }
 .article section div ul.menu li a:hover { color: #ffdd9d; }
 .article section div ul.menu.visible { opacity: 0; animation: fade-in-right 1s forwards; }
 .article section.layer { margin: 0; z-index: 1; position: relative; padding-bottom: 2em; background-color: #282a3a; }
@@ -309,13 +326,16 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 .article__glitch.moon { animation: jump-moon 2s infinite linear; height: 600px; width: 600px; bottom: -9%; right: -9%; z-index: 3; }
 @media only screen and (max-width: 767px) { .article__glitch.moon { height: 200px; width: 200px; } }
 .article__glitch.moon--small { height: 225px; width: 225px; right: -40%; bottom: -9%; }
+@media only screen and (max-width: 767px) { .article__glitch.moon--small { right: -200%; } }
 .article__glitch.mars { animation: jump-mars 1.9s infinite linear; height: 200px; width: 200px; left: 5%; top: 15%; }
 .article__glitch.small-moon { animation: jump-small-moon 2.15s infinite linear; height: 200px; width: 200px; left: 40%; top: 80%; }
-.article__glitch.asteroid--first { animation: jump-asteroid-first 1.25s infinite linear; bottom: -15em; height: 150px; width: 150px; left: 3em; }
-@media only screen and (max-width: 767px) { .article__glitch.asteroid--first { left: 18em; } }
+.article__glitch.asteroid--first { animation: jump-asteroid-first 1.25s infinite linear; bottom: -10em; height: 150px; width: 150px; left: 3em; }
+@media only screen and (max-width: 767px) { .article__glitch.asteroid--first { left: 17em; } }
 .article__glitch.asteroid--second { animation: jump-asteroid-second 1.5s infinite linear; height: 200px; width: 200px; right: 12%; top: 20%; }
+@media only screen and (max-width: 767px) { .article__glitch.asteroid--second { z-index: -1; } }
 .article__heading { display: inline-block; vertical-align: middle; *vertical-align: auto; *zoom: 1; *display: inline; letter-spacing: 1px; text-transform: uppercase; position: relative; margin-top: 20vh; width: 50vw; }
 @media only screen and (max-width: 767px) { .article__heading { margin-top: 5vh; width: 100%; } }
+@media only screen and (min-width: 2560px) { .article__heading { width: 55vw; } }
 .article__heading > span { animation: fade-in-left 1s 1s forwards; line-height: 1.4; display: -ms-flexbox; display: flex; float: left; clear: both; opacity: 0; }
 .article__heading > span:first-of-type { font-family: "rubik bold"; font-size: 2.5em; color: #ffdd9d; }
 @media only screen and (max-width: 767px) { .article__heading > span:first-of-type { font-size: 1.5em; } }
@@ -328,8 +348,11 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 .article__hint.satellite .article__hint--content { margin-right: -40px; bottom: 45px; width: 121px; }
 .article__hint.satellite .article__hint--content::after, .article__hint.satellite .article__hint--content::before { content: none; }
 .article__hint.satellite .article__hint--content p { color: #ffdd9d; font-size: 0.75em; font-family: "rubik bold"; text-transform: uppercase; }
+.article__hint.meteorite::after { display: none; }
+.article__hint.meteorite .article__hint--content { border-radius: 15px; background-color: rgba(255, 255, 255, 0.9); font-family: "rubik bold"; margin-left: 25px; color: #282a3a; margin-right: 0; padding: 12px; bottom: 25px; width: 154px; left: 50%; }
+.article__hint.meteorite .article__hint--content::after, .article__hint.meteorite .article__hint--content::before { display: none; }
+.article__hint.meteorite .article__hint--content p { text-align: left; }
 .article__hint.rocket { animation: fade-in-up 1s 1s forwards; opacity: 0; z-index: 1; bottom: 3%; right: 0; left: 0; }
-@media only screen and (max-width: 767px) { .article__hint.rocket { z-index: 0; } }
 .article__hint.rocket::after { animation: glow-green 2s cubic-bezier(0.25, 0.1, 0.2, 1) infinite; }
 .article__hint.rocket.none::after, .article__hint.rocket.none:hover .article__hint--content, .article__hint.rocket.none:hover .article__hint--radius, .article__hint.rocket.none .article__hint--dot { opacity: 0; }
 .article__hint.rocket .article__hint--content { width: 240px; }
@@ -342,16 +365,20 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 .article__hint.meteor .article__hint--content::after, .article__hint.meteor .article__hint--content::before { content: none; }
 .article__hint.meteor .article__hint--content p { color: #f16e74; font-size: 0.75em; font-family: "rubik bold"; text-transform: uppercase; }
 .article__hint.meteor--1 { bottom: -15vh; left: 10vw; }
+@media only screen and (max-width: 767px) { .article__hint.meteor--1 { bottom: -21vh; } }
 .article__hint.meteor--2 { bottom: -20vh; right: 10vw; }
-.article__hint.satellite:hover .article__hint--radius, .article__hint.rocket:hover .article__hint--radius, .article__hint.meteor:hover .article__hint--radius { visibility: visible; transform: scale(1); opacity: 1; }
-.article__hint.satellite:hover .article__hint--content, .article__hint.rocket:hover .article__hint--content, .article__hint.meteor:hover .article__hint--content { opacity: 1; z-index: 5; color: #fff; padding: 12px 0; position: absolute; transition: opacity .7s ease, visibility .7s ease; pointer-events: none; visibility: visible; }
-.article__hint.satellite:hover .article__hint--content::before, .article__hint.rocket:hover .article__hint--content::before, .article__hint.meteor:hover .article__hint--content::before { transition: width .4s; }
-.article__hint.satellite:hover .article__hint--content::after, .article__hint.rocket:hover .article__hint--content::after, .article__hint.meteor:hover .article__hint--content::after { opacity: 1; visibility: visible; }
+@media only screen and (max-width: 767px) { .article__hint.meteor--2 { bottom: -26vh; } }
+.article__hint.satellite:hover .article__hint--radius, .article__hint.meteorite:hover .article__hint--radius, .article__hint.rocket:hover .article__hint--radius, .article__hint.meteor:hover .article__hint--radius { visibility: visible; transform: scale(1); opacity: 1; }
+.article__hint.satellite:hover .article__hint--content, .article__hint.meteorite:hover .article__hint--content, .article__hint.rocket:hover .article__hint--content, .article__hint.meteor:hover .article__hint--content { visibility: visible; opacity: 1; }
+.article__hint.satellite:hover .article__hint--content::after, .article__hint.meteorite:hover .article__hint--content::after, .article__hint.rocket:hover .article__hint--content::after, .article__hint.meteor:hover .article__hint--content::after { opacity: 1; visibility: visible; }
 .article__hint--scroll { position: absolute; cursor: pointer; margin: 0 auto; z-index: 1; bottom: 0; right: 0; left: 0; }
 .article__hint--scroll.satellite { animation: jump 1.25s infinite linear; margin-bottom: -37.5px; margin-left: -37.5px; width: 75px; }
 .article__hint--scroll.satellite img { transition: 4s ease-in-out; transform: rotate(90deg); width: 100%; }
-.article__hint--scroll.rocket { transition: 3s; animation: jump 1s infinite linear; width: 50px; }
-.article__hint--scroll.rocket object { pointer-events: none; transition: 1s ease-in-out; transform: rotate(135deg); width: 100%; }
+.article__hint--scroll.meteorite { margin-bottom: 12.5px; margin-left: -12.5px; width: 25px; }
+.article__hint--scroll.rocket { transition: 3s; width: 50px; }
+.article__hint--scroll.rocket img { transform: rotate(135deg); position: absolute; width: 100%; }
+.article__hint--scroll.rocket img:nth-of-type(1) { transition: 1s ease-in-out; animation: jump 1s infinite linear; bottom: 0; }
+.article__hint--scroll.rocket img:nth-of-type(2) { transition: opacity 0.5s ease-in-out; animation: rocket-fire-down .4s infinite linear; bottom: -.3em; z-index: -1; left: 0; }
 .article__hint--scroll.meteor { animation: jump 1.25s infinite linear; margin-bottom: -37.5px; margin-left: -37.5px; width: 75px; }
 .article__hint--scroll.meteor img { transition: 4s ease-in-out; width: 100%; }
 .article__hint--scroll.meteor--1 img { transform: rotate(90deg); }
