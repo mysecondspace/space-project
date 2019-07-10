@@ -255,7 +255,7 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 .element { position: absolute; }
 .element__saturn { animation: jump-saturn 1.8s infinite linear; width: 150px; left: 60%; top: 50%; }
 .element__uranus { animation: jump-uranus 2.2s infinite linear; width: 175px; left: 40%; top: 75%; }
-@media only screen and (max-width: 767px) { .element__uranus { left: -125%; } }
+@media only screen and (max-width: 767px) { .element__uranus { left: -150%; } }
 .element__jupiter { animation: jump-jupiter 2.1s infinite linear; width: 150px; left: 30%; top: 65%; }
 @media only screen and (max-width: 767px) { .element__jupiter { left: -125%; } }
 
@@ -332,7 +332,7 @@ article { -ms-flex: 1 0 auto; flex: 1 0 auto; }
 .article__glitch.asteroid--first { animation: jump-asteroid-first 1.25s infinite linear; bottom: -10em; height: 150px; width: 150px; left: 3em; }
 @media only screen and (max-width: 767px) { .article__glitch.asteroid--first { left: 17em; } }
 .article__glitch.asteroid--second { animation: jump-asteroid-second 1.5s infinite linear; height: 200px; width: 200px; right: 12%; top: 20%; }
-@media only screen and (max-width: 767px) { .article__glitch.asteroid--second { z-index: -1; } }
+@media only screen and (max-width: 767px) { .article__glitch.asteroid--second { z-index: -1; right: 25%; } }
 .article__heading { display: inline-block; vertical-align: middle; *vertical-align: auto; *zoom: 1; *display: inline; letter-spacing: 1px; text-transform: uppercase; position: relative; margin-top: 20vh; width: 50vw; }
 @media only screen and (max-width: 767px) { .article__heading { margin-top: 5vh; width: 100%; } }
 @media only screen and (min-width: 2560px) { .article__heading { width: 55vw; } }
