@@ -1,0 +1,23 @@
+<div class="form">
+  <img src="images/close.svg">
+  <div class="container">
+    <form action="mail.php" method="post">
+      <input type="text" name="name" value="Как Вас зовут?"
+        onblur='if (this.value == "")
+        this.value = "Как Вас зовут?"'
+        onfocus='if (this.value == "Как Вас зовут?")
+        this.value = ""'>
+      <input type="text" name="mail" value="Ваш E-mail"
+        onblur='if (this.value == "")
+        this.value = "Ваш E-mail"'
+        onfocus='if (this.value == "Ваш E-mail")
+        this.value = ""'>
+      <textarea name="message" rows="1"
+        onblur='if (this.value == "") { this.value = "Что Вас интересует?" }'
+        onfocus='if (this.value == "Что Вас интересует?")
+        { this.value = "" }'>Что Вас интересует?</textarea>
+      <button type="submit" value="submit">Покорить мир!</button>
+    </form>
+    </div>
+  <p>ESC &mdash; закрыть форму</p>
+</div>

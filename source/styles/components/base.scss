@@ -1,0 +1,35 @@
+// global variables
+$browser-context: 16;
+$spacing: .5px;
+$time: .2s;
+
+// colors
+$hint-background: rgb(255, 221, 157);
+$hint-shadow-0: rgba(72, 170, 72, 0);
+$hint-shadow-3: rgba(72, 170, 72, .3);
+$hint-border-3: rgba(255, 255, 255, .3);
+$hint-border-6: rgba(255, 255, 255, .6);
+$hint-content: rgba(255, 255, 255, .9);
+$hint-radius: rgba(255, 255, 255, .1);
+
+$highlight: rgba(0, 0, 0, 0);
+$secondary: #fafbfc;
+$primary: #282a3a;
+$border: #e1e4e8;
+$white: #fff;
+$glow-red: #f16e74;
+$glow-green: #48aa48;
+$yellow: $hint-background;
+
+// media queries
+$phone: 768px;
+$tablet: 1024px;
+$laptop: 1200px;
+$desktop: 1440px;
+$biggest: 2560px;
+$container: 100%;
+
+// font
+$bold: 'rubik bold';
+$light: 'rubik light';
+$regular: 'rubik regular';

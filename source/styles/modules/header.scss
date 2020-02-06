@@ -1,0 +1,24 @@
+.header {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+  left: 0;
+  top: 0;
+
+  // panel with logotype
+  &__hood {
+    display: flex;
+    padding: 2% 0;
+
+    // logotype
+    &--logo {
+      float: left;
+      display: flex;
+      align-items: center;
+
+      object {
+        width: 50%;
+      }
+    }
+  }
+}
